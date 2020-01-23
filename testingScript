@@ -1,0 +1,43 @@
+Testing Script
+
+syns.txt: the sample synonym file
+file1.txt: the sample file 1
+file2.txt: the sample file 2
+testdoc.docx: a non-txt file
+file3.txt, file5.txt, file6.txt: files with varying content
+file4.txt: contains non-alphabetic, non-numeric character
+file7.txt: empty text file
+
+
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver
+Usage: java PlagiarismDriver <synonym_filename> <input1_filename> <input2_filename> [optional]<N_value>
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver syns.txt file1.txt file2.txt
+100.0%
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver syns.txt file1.txt testdoc.docx
+Please provide the correct file name(s) or format(s).
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver syns.txt file1.txt file2.txt hi
+Invalid N_value.
+Please provide a N_Value smaller than the word count of both files.
+-100.0%
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver syns.txt file1.txt file2.txt 3.5
+Invalid N_value.
+Please provide a N_Value smaller than the word count of both files.
+-100.0%
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver syns.txt file1.txt file2.txt -5
+Please provide a N_Value smaller than the word count of both files.
+-100.0%
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver syns.txt file1.txt file3.txt
+50.0%
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver syns.txt file1.txt file4.txt
+100.0%
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver syns.txt file5.txt file2.txt
+22.22222222222222%
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver syns.txt file6.txt file2.txt
+0.0%
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver syns.txt file7.txt file2.txt
+Please provide two non-empty files for detection.
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver syns.txt file2.txt file2.txt
+Please provide two different files for detection.
+Lisa:PlagiarismDetector lisa$ java PlagiarismDriver syns.txt file1.txt file2.txt 6
+Please provide a N_Value smaller than the word count of both files.
+-100.0%
